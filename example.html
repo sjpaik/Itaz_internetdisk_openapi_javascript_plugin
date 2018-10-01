@@ -15,9 +15,6 @@
 				margin: 0;
 				padding: 0;
 			}
-			.icon-bar {
-				margin: 15px 0 10px 0;
-			}
 			.icon-bar .glyphicon-home {
 				color: #999999;
 			}
@@ -35,7 +32,7 @@
 			}
 			.icon-bar .icon:hover,
 			.icon-bar .icon:focus {
-				background: #f2f2f2;
+				background: #F0F0F0;
 			}
 			.icon-bar .icon:first-child {
 				border-left: none;
@@ -43,6 +40,9 @@
 			.file-uploader {
 				background-color: #F0F0F0;
 				position: relative;
+			}
+			.file-uploader a {
+				color: #000;
 			}
 			.file-uploader ul.file-list {
 				margin: -10px -15px;
@@ -52,16 +52,28 @@
 				padding: 10px 15px;
 				border-bottom: 1px solid #dedede;
 			}
+			.file-uploader ul.file-list li.none {
+				cursor: default;
+			}
 			.file-uploader ul.file-list li.selected {
 				background-color: dodgerblue;
+				color: #FFF;
+			}
+			.file-uploader ul.file-list li.registered {
+				background-color: #333;
 				color: #FFF;
 			}
 			.file-uploader ul.file-list li.folder:hover {
 				background-color: #F0F0F0;
 			}
+			.file-uploader ul.file-list li.folder span.glyphicon {
+				color: GoldenRod ;
+			}
 			.file-uploader ul.file-list li span.glyphicon {
 				color: #999999;
-				margin-right: 5px;
+			}
+			.file-uploader ul.file-list li span {
+				margin-right: 10px;
 			}
 			.loading-box {
 				opacity: 0;
@@ -83,94 +95,23 @@
 				opacity: 1;
 				z-index: 99;
 			}
+			.webhard-login-box {
+				color: #999;
+			}
+			.webhard-login-box input {
+				border: none;
+				border-bottom: 1px solid #AAA;
+				text-align: center;
+				background-color: transparent;
+				margin-right: 10px;
+			}
 		</style>
 	</head>
 	<body>
 		<div class='container-fluid'>
-			<!--
-			<div class='file-uploader'>
-				<div class='col-xs-12 col-sm-6 col-md-6'>
-					<div class='icon-bar'>
-						<div class='icon btn'>
-							<div class='icon-img'><span class='glyphicon glyphicon-home'></span></div>
-							<div class='icon-text'>홈</div>
-						</div>
-						<div class='icon btn'>
-							<div class='icon-img'><span class='glyphicon glyphicon-arrow-up'></span></div>
-							<div class='icon-text'>상위폴더</div>
-						</div>
-						<div class='icon btn'>
-							<div class='icon-img'><span class='glyphicon glyphicon-ok'></span></div>
-							<div class='icon-text'>등록</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading path-bar">../filepath/abc/abc/</div>
-						<div class="panel-body">
-							<ul class='file-list'>
-								<li>
-									<span class='glyphicon glyphicon-folder-open'></span>
-									..
-								</li>
-								<li>
-									<span class='glyphicon glyphicon-folder-open'></span>
-									Folder 1
-								</li>
-								<li>
-									<span class='glyphicon glyphicon-folder-open'></span>
-									Folder 2
-								</li>
-								<li>
-									<span class='glyphicon glyphicon-folder-open'></span>
-									Folder 3
-								</li>
-								<li>
-									<span class='glyphicon glyphicon-file'></span>
-									File 1
-								</li>
-								<li>
-									<span class='glyphicon glyphicon-file'></span>
-									File 2
-								</li>
-								<li>
-									<span class='glyphicon glyphicon-file'></span>
-									File 3
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class='col-xs-12 col-sm-6 col-md-6'>
-					<div class='icon-bar'>
-						<div class='icon btn'>
-							<div class='icon-img'><span class='glyphicon glyphicon-remove'></span></div>
-							<div class='icon-text'>삭제</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading path-bar">Upload Files</div>
-						<div class="panel-body">
-							<ul class='file-list'>
-								<li>
-									<span class='glyphicon glyphicon-file'></span>
-									File 1
-								</li>
-								<li>
-									<span class='glyphicon glyphicon-file'></span>
-									File 2
-								</li>
-								<li>
-									<span class='glyphicon glyphicon-file'></span>
-									File 3
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
-		<div data-role="webhard" data-stored-file-indexes="" data-file-div-cd="1"></div>
-		<div data-role="webhard" data-stored-file-indexes="" data-file-div-cd="2"></div>
+			<div data-role="webhard" data-stored-file-indexes="" data-stored-file-names="" data-file-div-cd="1"></div>
+			<div data-role="webhard" data-stored-file-indexes="" data-stored-file-names="" data-file-div-cd="2"></div>
+		</div>
 	</body>
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>

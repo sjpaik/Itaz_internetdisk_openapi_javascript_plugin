@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+.file-uploader ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.file-uploader .icon-bar .glyphicon-home {
+	color: #999999;
+}
+.file-uploader .icon-bar .glyphicon-arrow-up {
+	color: #5bc0de;
+}
+.file-uploader .icon-bar .glyphicon-ok {
+	color: #5cb85c;
+}
+.file-uploader .icon-bar .glyphicon-remove {
+	color: #d9534f;
+}
+.file-uploader .icon-bar .icon {
+	display: inline-block;
+	font-size: 12px;
+}
+.file-uploader .icon-bar .icon:hover,
+.file-uploader .icon-bar .icon:focus {
+	background: #F0F0F0;
+}
+.file-uploader .icon-bar .icon:first-child {
+	border-left: none;
+}
+.file-uploader {
+	margin-top: 5px;
+	text-align: left!important;
+	font-size: 12px;
+	position: relative;
+}
+.file-uploader::after {
+	content: "";
+	clear: both;
+	display: block;
+}
+.file-uploader a {
+	color: #000;
+}
+.file-uploader ul.file-list {
+	height: 150px;
+	overflow-y: auto;
+}
+.file-uploader ul.file-list li {
+	cursor: pointer;
+	padding: 5px 15px;
+	border-bottom: 1px solid #dedede;
+}
+.file-uploader ul.file-list li.none {
+	height: 100%;
+	cursor: default;
+	border-bottom: none;
+}
+.file-uploader ul.file-list li.selected {
+	background-color: dodgerblue;
+	color: #FFF;
+}
+.file-uploader ul.file-list li.registered {
+	background-color: green;
+	color: #FFF;
+}
+.file-uploader ul.file-list li.folder:hover {
+	background-color: lightblue;
+}
+.file-uploader ul.file-list li.folder span.glyphicon {
+	color: GoldenRod;
+}
+.file-uploader ul.file-list li span.glyphicon {
+	color: #999999;
+}
+.file-uploader ul.file-list li span {
+	margin-right: 10px;
+}
+.file-uploader .loading-box {
+	opacity: 0;
+	transition: .3s ease;
+	background-color: rgba(0, 0, 0, .7);
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+}
+.file-uploader .loading-text {
+	font-size: 16px;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -25px;
+}
+.file-uploader .loading-box.on {
+	opacity: 1;
+	z-index: 99;
+}
+.file-uploader .webhard-login-box {
+	color: #999;
+}
+.file-uploader .webhard-login-box input {
+	border: none;
+	border-bottom: 1px solid #AAA;
+	text-align: center;
+	background-color: transparent;
+	margin-right: 10px;
+}

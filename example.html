@@ -7,110 +7,14 @@
 		<meta http-equiv='Cache-control' content='no-cache'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<title>Example</title>
-		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Noto+Sans+KR'>
-		<style>
-			ul {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-			}
-			.icon-bar .glyphicon-home {
-				color: #999999;
-			}
-			.icon-bar .glyphicon-arrow-up {
-				color: #5bc0de;
-			}
-			.icon-bar .glyphicon-ok {
-				color: #5cb85c;
-			}
-			.icon-bar .glyphicon-remove {
-				color: #d9534f;
-			}
-			.icon-bar .icon {
-				display: inline-block;
-			}
-			.icon-bar .icon:hover,
-			.icon-bar .icon:focus {
-				background: #F0F0F0;
-			}
-			.icon-bar .icon:first-child {
-				border-left: none;
-			}
-			.file-uploader {
-				background-color: #F0F0F0;
-				position: relative;
-			}
-			.file-uploader a {
-				color: #000;
-			}
-			.file-uploader ul.file-list {
-				margin: -10px -15px;
-			}
-			.file-uploader ul.file-list li {
-				cursor: pointer;
-				padding: 10px 15px;
-				border-bottom: 1px solid #dedede;
-			}
-			.file-uploader ul.file-list li.none {
-				cursor: default;
-			}
-			.file-uploader ul.file-list li.selected {
-				background-color: dodgerblue;
-				color: #FFF;
-			}
-			.file-uploader ul.file-list li.registered {
-				background-color: #333;
-				color: #FFF;
-			}
-			.file-uploader ul.file-list li.folder:hover {
-				background-color: #F0F0F0;
-			}
-			.file-uploader ul.file-list li.folder span.glyphicon {
-				color: GoldenRod ;
-			}
-			.file-uploader ul.file-list li span.glyphicon {
-				color: #999999;
-			}
-			.file-uploader ul.file-list li span {
-				margin-right: 10px;
-			}
-			.loading-box {
-				opacity: 0;
-				transition: .3s ease;
-				background-color: rgba(0, 0, 0, .7);
-				width: 100%;
-				height: 100%;
-				color: #fff;
-				position: absolute;
-				top: 0;
-				left: 0;
-				text-align: center;
-				display: table;
-			}
-			.loading-text {
-				display: table-cell; vertical-align: middle;
-			}
-			.loading-box.on {
-				opacity: 1;
-				z-index: 99;
-			}
-			.webhard-login-box {
-				color: #999;
-			}
-			.webhard-login-box input {
-				border: none;
-				border-bottom: 1px solid #AAA;
-				text-align: center;
-				background-color: transparent;
-				margin-right: 10px;
-			}
-		</style>
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Noto+Sans+KR' />
+		<link rel='stylesheet' href='itaz.internetdisk.css' />
 	</head>
 	<body>
 		<div class='container-fluid'>
-			<div data-role="webhard" data-stored-file-indexes="" data-stored-file-names="" data-file-div-cd="1"></div>
-			<div data-role="webhard" data-stored-file-indexes="" data-stored-file-names="" data-file-div-cd="2"></div>
+			<div data-role="webhard" data-stored-files="" data-file-div-cd="1"></div>
+			<div data-role="webhard" data-stored-files="" data-file-div-cd="2"></div>
 		</div>
 	</body>
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>

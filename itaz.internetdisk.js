@@ -11,12 +11,12 @@
  			var functions = {
  				init: function() {
  					var baseHtml = "";
-				 		baseHtml += "<div class='file-uploader row'>";
+				 		baseHtml += "<div class='file-uploader'>";
 						baseHtml += "<div class='loading-box'><div class='loading-text'>Loading...</div></div>";
 						baseHtml += "<div class='input-box'></div>";
-				 		baseHtml += "<div class='col-xs-12 col-sm-6 col-md-6'>";
-				 		baseHtml += "<div class='panel panel-default'>";
-				 		baseHtml += "<div class='panel-heading'>";
+				 		baseHtml += "<div class='col-xs-12 col-sm-6 col-md-6' style='padding:0'>";
+				 		baseHtml += "<div class='panel panel-default' style='margin-bottom:0'>";
+				 		baseHtml += "<div class='panel-heading' style='height:40px;'>";
 				 		baseHtml += "<div class='webhard-login-box text-center' style='display:none;'>";
 				 		baseHtml += "<span class='glyphicon glyphicon-user'></span> <input type='text' class='webhard-login-id' placeholder='아이디' />";
 				 		baseHtml += "<span class='glyphicon glyphicon-lock'></span> <input type='password' class='webhard-login-pwd' placeholder='비밀번호' />";
@@ -40,16 +40,16 @@
 				 		baseHtml += "</div>";
 				 		baseHtml += "</div>";
 				 		baseHtml += "</div>";
-				 		baseHtml += "<div class='panel-body'>";
+				 		baseHtml += "<div class='panel-body' style='padding:0'>";
 				 		baseHtml += "<ul class='file-list webhard-file-list'>";
 				 		baseHtml += "<li class='text-center none'>웹하드에 로그인해주세요.</li>";
 				 		baseHtml += "</ul>";
 				 		baseHtml += "</div>";
 				 		baseHtml += "</div>";
 				 		baseHtml += "</div>";
-				 		baseHtml += "<div class='col-xs-12 col-sm-6 col-md-6'>";
-				 		baseHtml += "<div class='panel panel-default'>";
-				 		baseHtml += "<div class='panel-heading path-bar'>등록된 파일<span></span></div>";
+				 		baseHtml += "<div class='col-xs-12 col-sm-6 col-md-6' style='padding:0 0 0 5px'>";
+				 		baseHtml += "<div class='panel panel-default' style='margin-bottom:0'>";
+				 		baseHtml += "<div class='panel-heading path-bar' style='height:40px;'>등록된 파일<span></span></div>";
 				 		baseHtml += "<div class='panel-heading' style='padding:0;'>";
 						baseHtml += "<div class='icon-bar'>";
 				 		baseHtml += "<div class='icon btn' data-action='btnRemove'>";
@@ -58,7 +58,7 @@
 				 		baseHtml += "</div>";
 				 		baseHtml += "</div>";
 				 		baseHtml += "</div>";
-				 		baseHtml += "<div class='panel-body'>";
+				 		baseHtml += "<div class='panel-body' style='padding:0'>";
 				 		baseHtml += "<ul class='file-list upload-file-list'>";
 				 		baseHtml += "<li class='text-center none'>웹하드에서 파일을 선택하신 후 등록해주세요.</li>";
 				 		baseHtml += "</ul>";
@@ -71,13 +71,55 @@
 				 	if(connectUrl != null && typeof connectUrl != "undefined") values.url = connectUrl;
 
 				 	this.each(function(){
-		 				$(this).append(baseHtml);
+				 		var $this = $(this);
+		 				$this.append(baseHtml);
+		 				var storedFiles = $this.data("storedFiles");
+		 				if(storedFiles != ""){
+		 					for(var i in storedFiles){
+	 							var $input1 = $("<input>").attr({
+	 								"class": "file-" + storedFiles[i].fileIndex,
+	 								"type": "hidden",
+	 								"name": "fileIndexArr",
+	 								"value": storedFiles[i].fileIndex
+	 							}).data({
+	 								"index": storedFiles[i].fileIndex,
+									"name": storedFiles[i].fileName,
+									"folder-type": 2
+	 							});
+	 							var $input2 = $("<input>").attr({
+	 								"class": "file-" + storedFiles[i].fileIndex,
+	 								"type": "hidden",
+	 								"name": "fileDivCdArr",
+	 								"value": storedFiles[i].fileDivCd
+	 							});
+	 							var $input3 = $("<input>").attr({
+	 								"class": "file-" + storedFiles[i].fileIndex,
+	 								"type": "hidden",
+	 								"name": "fileNameArr",
+	 								"value": storedFiles[i].fileName
+	 							});
+	 							var $input4 = $("<input>").attr({
+	 								"class": "file-" + storedFiles[i].fileIndex,
+	 								"type": "hidden",
+	 								"name": "webLinkArr",
+	 								"value": storedFiles[i].webLink
+	 							});
+	 							var $input5 = $("<input>").attr({
+	 								"class": "file-" + storedFiles[i].fileIndex,
+	 								"type": "hidden",
+	 								"name": "previewLinkArr",
+	 								"value": storedFiles[i].previewLink
+	 							});
+	 							$this.find(".input-box").append($input1, $input2, $input3, $input4, $input5);
+		 					}
+		 					functions.sync($this);
+		 				}
 		 			});
 
 				 	functions.render();
 		 			var sessionKey = functions.getSessionKey();
 		 			if(sessionKey != null){
-		 				$("[data-action=btnHome").trigger("click");
+		 				$("[data-action=btnHome]").trigger("click");
 		 			}
  				},
  				render: function(){
@@ -141,30 +183,72 @@
  							var index = $this.data("index");
  							$this.removeClass("selected");
  							if(!$this.hasClass("registered")){
-	 							var $input1 = $("<input>").attr({
-	 								"class": "file-" + index,
-	 								"type": "hidden",
-	 								"name": "fileIndexArr",
-	 								"value": index
-	 							}).data($this.data());
-	 							var $input2 = $("<input>").attr({
-	 								"class": "file-" + index,
-	 								"type": "hidden",
-	 								"name": "fileDivCdArr",
-	 								"value": parent.data("fileDivCd")
-	 							});
-	 							var $input3 = $("<input>").attr({
-	 								"class": "file-" + index,
-	 								"type": "hidden",
-	 								"name": "fileNameArr",
-	 								"value": parent.data("name")
-	 							});
-	 							parent.find(".input-box").append($input1, $input2, $input3);
-	 							$this.addClass("registered");
-	 							$this.find(".glyphicon").removeClass("glyphicon-file").addClass("glyphicon-ok");
+ 								var data = {
+									SessionIndex : functions.getSessionKey(),
+		 							FileIndex: index,
+		 							ExpireDateTime: "",
+		 							LimitDownCount: 0
+ 								};
+ 								var res = functions.callApi(parent, "/api.create_publink", data);
+ 								res.done(function(){
+									var respJSON = res.responseJSON;
+									if(respJSON.result == 0){
+										var webLink = respJSON.URL[0];
+										var data2 = {
+											SessionIndex : functions.getSessionKey(),
+				 							FileIndex: index,
+				 							LanguageType: 1,
+				 							PreviewType: 1
+		 								};
+										var res2 = functions.callApi(parent, "/api.get_publink_preview", data2);
+										res2.done(function(){
+											var respJSON2 = res2.responseJSON;
+											if(respJSON2.result == 0 || respJSON2.result == 71){
+												var previewLink = "";
+												if(respJSON2.result == 0){
+													previewLink = respJSON2.URL[0]
+												}
+												
+												var $input1 = $("<input>").attr({
+					 								"class": "file-" + index,
+					 								"type": "hidden",
+					 								"name": "fileIndexArr",
+					 								"value": index
+					 							}).data($this.data());
+					 							var $input2 = $("<input>").attr({
+					 								"class": "file-" + index,
+					 								"type": "hidden",
+					 								"name": "fileDivCdArr",
+					 								"value": parent.data("fileDivCd")
+					 							});
+					 							var $input3 = $("<input>").attr({
+					 								"class": "file-" + index,
+					 								"type": "hidden",
+					 								"name": "fileNameArr",
+					 								"value": $this.data("name")
+					 							});
+					 							var $input4 = $("<input>").attr({
+					 								"class": "file-" + index,
+					 								"type": "hidden",
+					 								"name": "webLinkArr",
+					 								"value": webLink
+					 							});
+					 							var $input5 = $("<input>").attr({
+					 								"class": "file-" + index,
+					 								"type": "hidden",
+					 								"name": "previewLinkArr",
+					 								"value": previewLink
+					 							});
+					 							parent.find(".input-box").append($input1, $input2, $input3, $input4, $input5);
+					 							$this.addClass("registered");
+					 							$this.find(".glyphicon").removeClass("glyphicon-file").addClass("glyphicon-ok");
+					 							functions.sync(parent);
+											}
+		 								});
+									}
+ 								});
 	 						 }
  						});
- 						functions.sync(parent);
  					});
  					$("[data-action=btnRemove]").click(function(){
  						var parent = $(this).closest("div[data-role=webhard]");
@@ -262,7 +346,7 @@
 						type: "POST",
 						dataType: "json",
 						data: JSON.stringify(data),
-						beforeSend: function(){
+						beforeSend: function(xhr){
 							obj.find(".loading-box").addClass("on");
 						},
 						error: function(request, status, error){
@@ -270,7 +354,7 @@
 							console.log(request);
 							console.log("status : " + status);
 							console.log("error : " + error);
-							obj.find(".loading-box").text("Response Error - Status : " + status);
+							obj.find(".loading-text").text("Response Error - Status : " + status);
 						},
 						success: function(d){
 							obj.find(".loading-box").removeClass("on");
@@ -311,6 +395,13 @@
 									var respJSON = res.responseJSON;
 									if(respJSON.result == 0){
 										var target = parent.find(".webhard-file-list");
+										var indexArr = [];
+										if(parent.find(".input-box input[name=fileIndexArr]").length > 0){
+				 							parent.find(".input-box input[name=fileIndexArr]").each(function(){
+				 								indexArr.push($(this).val());
+				 							});
+				 						}
+										
 										target.empty();
 										if(respJSON.arraySize > 0){
 											for(var i = 0; i < respJSON.arraySize; i++){
@@ -334,7 +425,8 @@
 													"a": respJSON.A[i],
 													"fa": respJSON.FA[i],
 													"ft": respJSON.FT[i],
-													"pt": respJSON.PT[i]
+													"pt": respJSON.PT[i],
+													"indexArr": indexArr
 												}, respJSON.FFT[i]);
 												target.append($li);
 											}
